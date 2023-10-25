@@ -79,8 +79,16 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public String imprimeInverso() {
-		// TODO Auto-generated method stub
-		return null;
+	    StringBuilder sb = new StringBuilder();
+	    NodoListaDuplamenteEncadeada<T> current = cauda.getAnterior();
+	    while (current != cabeca) {
+	        sb.append(current.getChave());
+	        current = current.getAnterior();
+	        if (current != cabeca) {
+	            sb.append(", ");
+	        }
+	    }
+	    return sb.toString();
 	}
 
 	@Override
