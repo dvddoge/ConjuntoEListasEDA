@@ -27,8 +27,13 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+	    int size = 0;
+	    NodoListaDuplamenteEncadeada<T> current = cabeca.getProximo();
+	    while (current != cauda) {
+	        size++;
+	        current = current.getProximo();
+	    }
+	    return size;
 	}
 
 	@Override
