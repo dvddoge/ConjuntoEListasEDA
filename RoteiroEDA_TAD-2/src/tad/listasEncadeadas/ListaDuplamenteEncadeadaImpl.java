@@ -65,9 +65,16 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public String imprimeEmOrdem() {
-		// TODO Auto-generated method stub
-		
-		return null;
+	    StringBuilder sb = new StringBuilder();
+	    NodoListaDuplamenteEncadeada<T> current = cabeca.getProximo();
+	    while (current != cauda) {
+	        sb.append(current.getChave());
+	        current = current.getProximo();
+	        if (current != cauda) {
+	            sb.append(", ");
+	        }
+	    }
+	    return sb.toString();
 	}
 
 	@Override
