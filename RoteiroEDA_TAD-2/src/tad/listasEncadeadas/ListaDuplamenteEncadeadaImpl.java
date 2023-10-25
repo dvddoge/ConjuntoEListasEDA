@@ -38,8 +38,14 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public NodoListaDuplamenteEncadeada<T> search(T chave) {
-		// TODO Auto-generated method stub
-		return null;
+	    NodoListaDuplamenteEncadeada<T> current = cabeca.getProximo();
+	    while (current != cauda) {
+	        if (current.getChave().equals(chave)) {
+	            return current;
+	        }
+	        current = current.getProximo();
+	    }
+	    return null;
 	}
 
 	@Override
