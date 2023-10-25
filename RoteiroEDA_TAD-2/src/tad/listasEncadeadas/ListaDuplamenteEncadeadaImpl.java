@@ -65,8 +65,13 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public NodoListaEncadeada<T> remove(T chave) {
-		// TODO Auto-generated method stub
-		return null;
+	    NodoListaDuplamenteEncadeada<T> nodeToRemove = search(chave);
+	    if (nodeToRemove != null) {
+	        nodeToRemove.getAnterior().setProximo(nodeToRemove.getProximo());
+	        nodeToRemove.getProximo().setAnterior(nodeToRemove.getAnterior());
+	        return nodeToRemove;
+	    }
+	    return null;
 	}
 
 	@Override
