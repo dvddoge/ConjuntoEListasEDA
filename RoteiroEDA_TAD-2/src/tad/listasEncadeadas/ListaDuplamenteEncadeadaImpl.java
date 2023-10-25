@@ -22,8 +22,7 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+	    return cabeca.getProximo() == cauda;
 	}
 
 	@Override
