@@ -105,8 +105,14 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
 	@Override
 	public T[] toArray(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return null;
+	    T[] array = (T[]) Array.newInstance(clazz, size());
+	    NodoListaDuplamenteEncadeada<T> current = cabeca.getProximo();
+	    int i = 0;
+	    while (current != cauda) {
+	        array[i++] = current.getChave();
+	        current = current.getProximo();
+	    }
+	    return array;
 	}
 
 	@Override
