@@ -8,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,25 +28,42 @@ public class TestaListaDuplamenteEncadeada {
 		listaDuplaEnc = new ListaDuplamenteEncadeadaImpl<Integer>();
 	}
 	
-	@Test
-	public void imprimeEmOrdemTest() {
-		assertEquals("", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(2);
-		assertEquals("2", listaDuplaEnc.imprimeEmOrdem());
-		assertArrayEquals(new Integer[2], listaDuplaEnc.toArray(Integer.class));
-		listaDuplaEnc.insert(10);
-		assertEquals("2, 10", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(5);
-		assertEquals("2, 10, 5", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(9);
-		assertEquals("2, 10, 5, 9", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(1);
-		assertEquals("2, 10, 5, 9, 1", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(3);
-		assertEquals("2, 10, 5, 9, 1, 3", listaDuplaEnc.imprimeEmOrdem());
-		listaDuplaEnc.insert(4);
-		assertEquals("2, 10, 5, 9, 1, 3, 4", listaDuplaEnc.imprimeEmOrdem());
-	}
+@Test
+public void imprimeEmOrdemTest() {
+    assertEquals("", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(2);
+    System.out.println("Após inserir 2: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2", listaDuplaEnc.imprimeEmOrdem());
+    
+    System.out.println("Array após inserir 2: " + Arrays.toString(listaDuplaEnc.toArray(Integer.class)));
+    assertArrayEquals(new Integer[2], listaDuplaEnc.toArray(Integer.class));
+    
+    listaDuplaEnc.insert(10);
+    System.out.println("Após inserir 10: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(5);
+    System.out.println("Após inserir 5: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10, 5", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(9);
+    System.out.println("Após inserir 9: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10, 5, 9", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(1);
+    System.out.println("Após inserir 1: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10, 5, 9, 1", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(3);
+    System.out.println("Após inserir 3: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10, 5, 9, 1, 3", listaDuplaEnc.imprimeEmOrdem());
+    
+    listaDuplaEnc.insert(4);
+    System.out.println("Após inserir 4: " + listaDuplaEnc.imprimeEmOrdem());
+    assertEquals("2, 10, 5, 9, 1, 3, 4", listaDuplaEnc.imprimeEmOrdem());
+}
+
 	
 	@Test
 	public void toArrayTest() {
