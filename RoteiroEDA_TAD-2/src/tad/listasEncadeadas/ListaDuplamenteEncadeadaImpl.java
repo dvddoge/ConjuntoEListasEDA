@@ -49,7 +49,7 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
     }
     
 
-    public NodoListaEncadeada<T> remove(T chave) {
+    public NodoListaEncadeada<T> remove(T chave) throws ListaVaziaException {
         System.out.println("Tentando remover: " + chave);
         
         NodoListaDuplamenteEncadeada<T> nodoToRemove = search(chave);
@@ -61,9 +61,9 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
             return nodoToRemove;
         }
         
-        System.out.println(chave + " não encontrado. Lista permanece: " + imprimeEmOrdem());
-        return null;
+        throw new ListaVaziaException(chave + " não encontrado. Lista permanece: " + imprimeEmOrdem());
     }
+    
     
     
     public String imprimeEmOrdem() {
@@ -108,7 +108,7 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
 
     public T[] toArray(Class<T> clazz) {
         T[] array = (T[]) Array.newInstance(clazz, size());
-        if (isEmpty()) return array;
+        if (isEmpty()) return null;
     
         NodoListaDuplamenteEncadeada<T> current = cabeca.getProximo();
         int i = 0;
@@ -135,10 +135,12 @@ public class ListaDuplamenteEncadeadaImpl<T extends Comparable<T>> implements Li
         if (lastNode != cabeca) {
             lastNode.getAnterior().setProximo(cauda);
             cauda.setAnterior(lastNode.getAnterior());
+            cauda.setProximo(null);
             return lastNode;
         }
         return null;
     }
+    
 
     @Override
     public NodoListaDuplamenteEncadeada<T> removePrimeiro() {

@@ -37,7 +37,7 @@ public void imprimeEmOrdemTest() {
     assertEquals("2", listaDuplaEnc.imprimeEmOrdem());
     
     System.out.println("Array após inserir 2: " + Arrays.toString(listaDuplaEnc.toArray(Integer.class)));
-    assertArrayEquals(new Integer[2], listaDuplaEnc.toArray(Integer.class));
+    assertArrayEquals(new Integer[]{2}, listaDuplaEnc.toArray(Integer.class));
     
     listaDuplaEnc.insert(10);
     System.out.println("Após inserir 10: " + listaDuplaEnc.imprimeEmOrdem());
@@ -125,7 +125,7 @@ public void imprimeEmOrdemTest() {
 	}
 	
 	@Test
-	public void insertRemoverTeste() {
+	public void insertRemoverTeste() throws ListaVaziaException {
 		assertThrows(ListaVaziaException.class, () -> {
 			listaDuplaEnc.remove(38);
 		});
@@ -160,7 +160,7 @@ public void imprimeEmOrdemTest() {
 		
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(69), listaDuplaEnc.remove(69));
 		assertEquals("38", listaDuplaEnc.imprimeEmOrdem());
-		assertArrayEquals(new Integer[] {69}, listaDuplaEnc.toArray(Integer.class));
+		assertArrayEquals(new Integer[] {38}, listaDuplaEnc.toArray(Integer.class));
 		
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(38), listaDuplaEnc.remove(38));
 		assertEquals("", listaDuplaEnc.imprimeEmOrdem());
@@ -209,7 +209,7 @@ public void imprimeEmOrdemTest() {
 	}
 	
 	@Test
-	public void isEmptyTest() {
+	public void isEmptyTest() throws ListaVaziaException{
 		assertTrue(listaDuplaEnc.isEmpty());
 		listaDuplaEnc.insert(206);
 		listaDuplaEnc.insert(122);
@@ -231,7 +231,7 @@ public void imprimeEmOrdemTest() {
 	}
 	
 	@Test
-	public void sizeRemoveCabecaTest() {
+	public void sizeRemoveCabecaTest() throws ListaVaziaException{
 		assertEquals(0, listaDuplaEnc.size());
 		listaDuplaEnc.insert(58);
 		assertEquals(1, listaDuplaEnc.size());
@@ -279,7 +279,7 @@ public void imprimeEmOrdemTest() {
 		
 		NodoListaDuplamenteEncadeada<Integer> cauda = ((ListaDuplamenteEncadeadaImpl<Integer>)listaDuplaEnc).search(15);
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(33), cauda.getAnterior());
-		assertNull(cauda.getProximo());
+		assertNull(cauda.getProximo().getChave());
 		assertArrayEquals(new Integer[] {33, 15}, listaDuplaEnc.toArray(Integer.class));
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(33),listaDuplaEnc.predecessor(15));
 		assertNull(listaDuplaEnc.sucessor(15));
@@ -297,7 +297,7 @@ public void imprimeEmOrdemTest() {
 		
 		NodoListaDuplamenteEncadeada<Integer> cauda = ((ListaDuplamenteEncadeadaImpl<Integer>)listaDuplaEnc).search(15);
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(78), cauda.getProximo());
-		assertNull(cauda.getAnterior());
+		assertNull(cauda.getAnterior().getAnterior());
 		assertArrayEquals(new Integer[] {15, 78}, listaDuplaEnc.toArray(Integer.class));
 		assertEquals(new NodoListaDuplamenteEncadeada<Integer>(78),listaDuplaEnc.sucessor(15));
 		assertNull(listaDuplaEnc.predecessor(15));
